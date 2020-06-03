@@ -1,0 +1,67 @@
+# AgCl
+# Computation of the Band Structure.
+
+
+ndtset 2
+
+#Dataset 1 : usual self-consistent calculation
+kptopt1 1          
+                  
+nshiftk1 4
+shiftk1  0.5  0.5  0.5  
+         0.5  0.0  0.0
+         0.0  0.5  0.0
+         0.0  0.0  0.5
+ngkpt1  6 6 6  
+prtden1  1        
+toldfe1  1.0d-6    
+
+#Dataset 2 : the band structure
+iscf2    -2
+getden2  -1
+kptopt2  -3
+nband2   13
+ndivk2   10 12 17      
+                       
+kptbounds2  0.5  0.0  0.0 # L point
+            0.0  0.0  0.0 # Gamma point
+            0.0  0.5  0.5 # X point
+            1.0  1.0  1.0 # Gamma point in another cell.
+tolwfr2  1.0d-12
+enunit2  1             # Will output the eigenenergies in eV 
+
+
+#Definition of the unit cell
+acell 3*3.976 Angstroms  # 
+rprim  0.0  0.5  0.5   # primitive vectors (to be scaled by acell)
+       0.5  0.0  0.5   
+       0.5  0.5  0.0
+
+#Definition of the atom types
+ntypat 2          # There is only two types of atom
+znucl 47 17       # The keyword "znucl" refers to the atomic number of the 
+                  # possible type(s) of atom. The pseudopotential(s) 
+                  # mentioned in the "files" file must correspond
+                  # to the type(s) of atom. Here, the only type is Silver and Chlorine.
+                         
+
+#Definition of the atoms
+natom 2           
+typat 1 2         .
+xred             
+                  # will follow, one triplet of number for each atom
+   0.0    0.0    0.0 
+   0.5    0.5    0.5  
+
+#Definition of the planewave basis set
+ecut 30        
+#Definition of the SCF procedure
+nstep 40       
+diemac 12.0       
+                  
+                  
+                  
+
+
+
+
